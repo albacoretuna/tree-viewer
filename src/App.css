@@ -3,17 +3,26 @@
   font-family: 'Helvetica', 'Arial', 'sans-serif';
 }
 
+.Header {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
 .Gallery {
   padding: 10px;
   display: grid;
   grid-template-columns: 98%;
   grid-gap: 2%;
+  justify-content: center;
 }
 
 
 @media only screen and (min-device-width : 667px) {
   .Gallery {
-    grid-template-columns: 48% 48%;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 2%;
   }
 }

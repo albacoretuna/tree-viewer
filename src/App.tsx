@@ -1,13 +1,17 @@
+// libs
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import axios from 'axios';
+
+// ours
 import Frame from './Frame';
 import './App.css';
 
 const App: FunctionComponent = () => {
   const [data, setData] = useState({ trees: [], loading: true, error: null });
-  const treeDataUrl = 'https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json';
 
   const fetchDataAndSetState = () => {
+    const treeDataUrl =
+      'https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json';
     axios
       .get(treeDataUrl)
       .then(({ data }) => {
@@ -16,11 +20,16 @@ const App: FunctionComponent = () => {
       .catch(error => {
         setData({ trees: [], error: error, loading: false });
       });
-  }
+  };
 
-  useEffect(() => { fetchDataAndSetState() }, []);
+  useEffect(() => {
+    fetchDataAndSetState();
+  }, []);
   return (
     <div className="App">
+      <header className="Header">
+        <h1>Trees We Love</h1>
+      </header>
       {/* loading indicator */}
       {data.loading && <p>Loading...</p>}
 
@@ -33,7 +42,10 @@ const App: FunctionComponent = () => {
       )}
       <ul className="Gallery">
         {data.trees.map((tree, index) => (
-          <Frame tree={tree} key={index} />
+          <Frame
+            tree={tree}
+            key={index /*TODO in production get unique ids from backend*/}
+          />
         ))}
       </ul>
     </div>
