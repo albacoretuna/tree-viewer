@@ -8,6 +8,7 @@ import './App.css';
 
 const App: FunctionComponent = () => {
   const [data, setData] = useState({ trees: [], loading: true, error: null });
+  const [searchText, setSearchText] = useState('');
 
   const fetchDataAndSetState = () => {
     const treeDataUrl =
@@ -30,6 +31,14 @@ const App: FunctionComponent = () => {
     <div className="App">
       <header className="Header">
         <h1>Trees We Love</h1>
+        <label htmlFor="search">Fitler by tree name: </label>
+        <input
+          id="search"
+          type="search"
+          placeholder="for example: Baobab"
+          className="SearchInput"
+          onChange={event => setSearchText(event.target.value.toLowerCase())}
+        />
       </header>
       {/* loading indicator */}
       {data.loading && <p>Loading...</p>}
@@ -42,12 +51,17 @@ const App: FunctionComponent = () => {
         </p>
       )}
       <ul className="Gallery">
-        {data.trees.map((tree, index) => (
-          <Frame
-            tree={tree}
-            key={index /*TODO in production get unique ids from backend*/}
-          />
-        ))}
+        {data.trees
+          .filter(
+            (tree: any) =>
+              tree.name && tree.name.toLowerCase().includes(searchText)
+          )
+          .map((tree, index) => (
+            <Frame
+              tree={tree}
+              key={index /*TODO in production get unique ids from backend*/}
+            />
+          ))}
       </ul>
       <footer className="Footer">Trees we need</footer>
     </div>

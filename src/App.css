@@ -10,6 +10,11 @@
   border-radius: 5px;
 }
 
+.SearchInput {
+  height: 1.5em;
+  padding: 10px;
+}
+
 .Gallery {
   padding: 10px;
   display: grid;
