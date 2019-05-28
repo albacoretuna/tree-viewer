@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 const data = {
   "trees": [
@@ -37,19 +37,16 @@ const Frame = (tree: any, index: number) => {
         return <li className="Frame" key={index /*TODO use a unique id in production*/}>
         <h1>{tree.name}</h1>
         <h2>{tree.species_name}</h2>
-        { imageIsVisible && <img src={tree.image} alt = {tree.name} className="Image"/> }
-        <button onClick={() => setImageIsVisible(!imageIsVisible)}>{getButtonText(imageIsVisible)}</button>
+        <button className="Button" onClick={() => setImageIsVisible(!imageIsVisible)}>{getButtonText(imageIsVisible)}</button>
+        <img src={tree.image} alt = {tree.name} className={imageIsVisible ? "Image" : "Image Image--is-hidden"}/>
         </li>
 }
 const App: React.FC = () => {
   return (
     <div className="App">
-      <section>
       <ul className="Gallery">
-      {
-      data.trees.map(Frame)}
+      {data.trees.map(Frame)}
       </ul>
-      </section>
     </div>);
 }
 
