@@ -2,7 +2,7 @@
 
 This is a tree viewer that reads somme tree meta data from a JSON end point and represents them in your browser.
 
-
+![Demo of Treemendous tree viewer](tree-viewer-demo.gif?raw=true "Demo")
 
 ## Install
 
@@ -21,6 +21,8 @@ yarn start
   * fetch JSON data
   * List the trees
   * On click open the photos of the tree
+  * Filter trees by name
+  * Mobile friendly
 
 ## Ideas for improvement
 
@@ -28,3 +30,4 @@ yarn start
   * API schema validation
   * StyledComponents for CSS
   * Error reporting, so that we know what goes wrong before users need to tell us
+  * End to end testing using Cypress etc.
