@@ -1,53 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
+import axios from 'axios';
 import './App.css';
-const data = {
-  "trees": [
-    {
-      "name": "Baobab",
-      "species_name": "Adansonia",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Baobab_Adansonia_digitata.jpg"
-    },
-    {
-      "name": "Red Mangrove",
-      "species_name": "Rhizophora mangle",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/16/Red_mangrove-everglades_natl_park.jpg"
-    },
-    {
-      "name": "Common Hornbeam",
-      "species_name": "Carpinus betulus",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Carpinus_betulus_-_Hunsr%C3%BCck_001.jpg"
-    },
-    {
-      "name": "Turkey Oak",
-      "species_name": "Quercus cerris",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/3/34/Quercus_cerris.JPG"
-    },
-    {
-      "name": "Japanese red pine",
-      "species_name": "Pinus densiflora",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Pinus_syluestriformis_%28Takenouchi%29T.Wang_ex_Cheng.JPG"
-    }
-  ]
+
+
+type Tree = {
+  image: string,
+  name: string,
+  species_name: string
 }
 
-const getButtonText = (flag: boolean) : string => flag ? "Hide Image" : "Show Image"
-const Frame = (tree: any, index: number) => {
+type FrameProps = {
+  tree: Tree;
+};
+
+
+const getButtonText = (flag: boolean): string =>
+  flag ? 'Hide Image' : 'Show Image';
+
+const Frame: FunctionComponent<FrameProps> = ({ tree }) => {
   const [imageIsVisible, setImageIsVisible] = useState(false);
-  console.log(tree);
-        return <li className="Frame" key={index /*TODO use a unique id in production*/}>
-        <h1>{tree.name}</h1>
-        <h2>{tree.species_name}</h2>
-        <button className="Button" onClick={() => setImageIsVisible(!imageIsVisible)}>{getButtonText(imageIsVisible)}</button>
-        <img src={tree.image} alt = {tree.name} className={imageIsVisible ? "Image" : "Image Image--is-hidden"}/>
-        </li>
-}
-const App: React.FC = () => {
+  return (
+    <li className="Frame">
+      <h1>{tree.name}</h1>
+      <h2>{tree.species_name}</h2>
+      <img
+        src={tree.image}
+        alt={tree.name}
+        className={imageIsVisible ? 'Image' : 'Image Image--is-hidden'}
+      />
+      <button
+        className="Button"
+        onClick={() => setImageIsVisible(!imageIsVisible)}
+      >
+        {getButtonText(imageIsVisible)}
+      </button>
+    </li>
+  );
+};
+
+const App: FunctionComponent = () => {
+  const [data, setData] = useState({ trees: [], loading: true, error: null });
+
+  useEffect(() => {
+    axios
+      .get(
+        'https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json'
+      )
+      .then(({ data }) => {
+        setData({...data, loading: false});
+      })
+      .catch(error => {
+        setData({trees: [], error: error, loading: false});
+      })
+  }, []);
   return (
     <div className="App">
+      {/* loading indicator */}
+      {data.loading && <p>Loading...</p>}
+
+      {/* error handling */}
+      {data.error && <p>Failed to load tree data, check dev console {console.error(data.error)}</p>}
       <ul className="Gallery">
-      {data.trees.map(Frame)}
+        {data.trees.map((tree, index) => (
+          <Frame tree={tree} key={index} />
+        ))}
       </ul>
-    </div>);
-}
+    </div>
+  );
+};
 
 export default App;
