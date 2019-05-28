@@ -25,6 +25,7 @@ const App: FunctionComponent = () => {
   useEffect(() => {
     fetchDataAndSetState();
   }, []);
+
   return (
     <div className="App">
       <header className="Header">
