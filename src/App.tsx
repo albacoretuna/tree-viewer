@@ -48,7 +48,7 @@ const App: FunctionComponent = () => {
           />
         ))}
       </ul>
-    <footer className="Footer">These are trees that we love and we need more of.</footer>
+      <footer className="Footer">Trees we need</footer>
     </div>
   );
 };
