@@ -9,7 +9,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,31 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.Gallery {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  grid-gap: 20px;
+  background-color: #fff;
+  color: #444;
+}
+
+.Frame {
+  color: #fff;
+  border-radius: 0;
+  border: 2px solid black;
+  padding: 20px;
+  font-size: 150%;
+}
+
+.Frame--is-hidden {
+  visibility: none;
+  display: hidden;
+}
+
+.Image {
+  max-width: 100%;
 }
 
 @keyframes App-logo-spin {
