@@ -34,6 +34,7 @@
   border: 2px solid black;
   padding: 20px;
   background-color: #fff;
+  height: fit-content;
 }
 
 
@@ -56,4 +57,13 @@
   border: 2px solid black;
   padding: 10px;
   margin: 10px;
+  min-width: 200px;
+}
+
+.Footer {
+  max-width: 400px;
+  margin: 50px auto 30px ;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 10px;
 }
