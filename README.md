@@ -7,19 +7,26 @@ This is a tree viewer that reads somme tree meta data from a JSON end point and 
 ## Install
 
 ```
-yarn
+npm install
 ```
 
 ## Develop
 
 ```
-yarn start
+npm start
 ```
 
 ## Tests
-
+To run unit and integration tests
 ```
 npm test
+```
+
+To run end to end tests in browser
+Make sure the app is running on localhost:3000, then
+
+```
+npm run cypress:open
 ```
 
 ## Features
@@ -36,4 +43,3 @@ npm test
   * API schema validation
   * StyledComponents for CSS
   * Error reporting, so that we know what goes wrong before users need to tell us
-  * End to end testing using Cypress etc.
