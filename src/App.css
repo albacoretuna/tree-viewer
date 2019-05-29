@@ -11,14 +11,18 @@
 }
 
 .SearchInput {
+  border: 2px solid green;
+  padding: 20px;
+  min-width: 320px;
+  margin-top: 10px;
   height: 1.5em;
-  padding: 10px;
+  font-size: 1.1em;
 }
 
 .Gallery {
   padding: 10px;
   display: grid;
-  grid-template-columns: 98%;
+  grid-template-columns: 1fr;
   grid-gap: 2%;
   justify-content: center;
 }
