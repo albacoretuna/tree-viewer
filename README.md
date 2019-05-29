@@ -16,6 +16,12 @@ yarn
 yarn start
 ```
 
+## Tests
+
+```
+npm test
+```
+
 ## Features
 
   * fetch JSON data
