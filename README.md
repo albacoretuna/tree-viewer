@@ -4,6 +4,10 @@ This is a tree viewer that reads somme tree meta data from a JSON end point and 
 
 ![Demo of Treemendous tree viewer](tree-viewer-demo.gif?raw=true "Demo")
 
+## Demo
+
+See it live at https://treemendous.surge.sh/
+
 ## Install
 
 ```
