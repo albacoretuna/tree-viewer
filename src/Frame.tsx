@@ -1,11 +1,11 @@
 // Frame component, as in photo frame
+
+// libs
 import React, { useState, FunctionComponent } from 'react';
 
-type Tree = {
-  image: string;
-  name: string;
-  species_name: string;
-};
+// ours
+import { Tree } from './App'
+
 
 type FrameProps = {
   tree: Tree;

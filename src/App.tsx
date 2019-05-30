@@ -6,17 +6,32 @@ import axios from 'axios';
 import Frame from './Frame';
 import './App.css';
 
+// a single tree info in the api response
+export type Tree = {
+  image: string;
+  name: string;
+  species_name: string;
+};
+
 const App: FunctionComponent = () => {
-  const [data, setData] = useState({ trees: [], loading: true, error: null });
+  interface IDataState {
+    trees: Tree[];
+    loading: boolean;
+    error: any;
+  }
+  const initialData = { trees: [], loading: true, error: null };
+  const [data, setData] = useState<IDataState>(initialData);
   const [searchText, setSearchText] = useState('');
 
+  // read tree data from api and put it into state
   const fetchDataAndSetState = () => {
     const treeDataUrl =
       'https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json';
+
     axios
       .get(treeDataUrl)
       .then(({ data }) => {
-        setData({ ...data, loading: false });
+        setData({ ...data, error: null, loading: false });
       })
       .catch(error => {
         setData({ trees: [], error: error, loading: false });
@@ -30,7 +45,6 @@ const App: FunctionComponent = () => {
   return (
     <div className="App">
       <header className="Header">
-        <h1>Trees We Love</h1>
         <label htmlFor="search">Fitler by tree name: </label>
         <input
           id="search"
@@ -53,7 +67,7 @@ const App: FunctionComponent = () => {
       <ul className="Gallery">
         {data.trees
           .filter(
-            (tree: any) =>
+            (tree: Tree) =>
               tree.name && tree.name.toLowerCase().includes(searchText)
           )
           .map((tree, index) => (
@@ -63,7 +77,7 @@ const App: FunctionComponent = () => {
             />
           ))}
       </ul>
-      <footer className="Footer">Trees we need</footer>
+      <footer className="Footer">We Need Trees</footer>
     </div>
   );
 };
