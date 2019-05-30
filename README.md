@@ -6,7 +6,7 @@ This is a tree viewer that reads somme tree meta data from a JSON end point and 
 
 ## Demo
 
-See it live at https://treemendous.surge.sh/
+See it live at https://treemendous.netlify.com/
 
 ## Install
 
@@ -32,6 +32,9 @@ Make sure the app is running on localhost:3000, then
 ```
 npm run cypress:open
 ```
+
+## Deployment
+With every push to master, CI will automatically run tests and deploy the app to https://treemendous.netlify.com/
 
 ## Features
 
