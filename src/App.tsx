@@ -22,6 +22,7 @@ const App: FunctionComponent = () => {
   const initialData = { trees: [], loading: true, error: null };
   const [data, setData] = useState<IDataState>(initialData);
   const [searchText, setSearchText] = useState('');
+  const [showAllPhotos, setShowAllPhotos] = useState(false);
 
   // read tree data from api and put it into state
   const fetchDataAndSetState = () => {
@@ -42,6 +43,9 @@ const App: FunctionComponent = () => {
     fetchDataAndSetState();
   }, []);
 
+  const getShowAllPhotosText = (showAllPhotos: boolean): string =>
+    showAllPhotos ? 'Hide All photos' : 'Show all photos';
+
   return (
     <div className="App">
       <header className="Header">
@@ -53,6 +57,9 @@ const App: FunctionComponent = () => {
           className="SearchInput"
           onChange={event => setSearchText(event.target.value.toLowerCase())}
         />
+        <button className="Button" onClick={() => setShowAllPhotos(!showAllPhotos)}>
+          {getShowAllPhotosText(showAllPhotos)}
+        </button>
       </header>
       {/* loading indicator */}
       {data.loading && <p>Loading...</p>}
@@ -74,6 +81,7 @@ const App: FunctionComponent = () => {
             <Frame
               tree={tree}
               key={index /*TODO in production get unique ids from backend*/}
+              showAllPhotos={showAllPhotos}
             />
           ))}
       </ul>

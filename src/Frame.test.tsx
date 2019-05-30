@@ -8,41 +8,34 @@ const mockTree = {
       "image": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Pinus_syluestriformis_%28Takenouchi%29T.Wang_ex_Cheng.JPG"
    };
 
-
 describe('Frame component', () => {
+  const wrapper = shallow(<Frame tree={mockTree}  showAllPhotos={false}/>);
   it('Shows tree name', () => {
-    const wrapper = shallow(<Frame tree={mockTree}/>);
     const heading = wrapper.find('h1').text();
     expect(heading).toEqual(mockTree.name);
   });
 
   it('Shows species name', () => {
-    const wrapper = shallow(<Frame tree={mockTree}/>);
     const subHeading = wrapper.find('h2').text();
     expect(subHeading).toEqual(mockTree.species_name);
   });
 
-  it('Defaults button text to Show Image', () => {
-    const wrapper = shallow(<Frame tree={mockTree}/>);
+  it('Defaults button text to Show Photo', () => {
     const buttonText = wrapper.find('button').text();
-    expect(buttonText).toEqual("Show Image");
+    expect(buttonText).toEqual("Show Photo");
   })
 
   it('Changes show image button text', () => {
-    const wrapper = shallow(<Frame tree={mockTree}/>);
     const button = wrapper.find('button');
     button.simulate('click');
     const buttonText = wrapper.find('button').text();
-    expect(buttonText).toEqual("Hide Image");
+    expect(buttonText).toEqual("Hide Photo");
   })
 
-  it('Shows the image on click', () => {
-    const wrapper = shallow(<Frame tree={mockTree}/>);
+  it('Hides the image on second click', () => {
     const button = wrapper.find('button');
-
     button.simulate('click');
-
     const image = wrapper.find('img');
-    expect(image.hasClass('Image--is-visible')).toEqual(true);
+    expect(image.hasClass('Image--is-visible')).toEqual(false);
   })
 });

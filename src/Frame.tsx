@@ -1,7 +1,7 @@
 // Frame component, as in photo frame
 
 // libs
-import React, { useState, FunctionComponent } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 
 // ours
 import { Tree } from './App'
@@ -9,13 +9,18 @@ import { Tree } from './App'
 
 type FrameProps = {
   tree: Tree;
+  showAllPhotos: boolean;
 };
 
 const getButtonText = (flag: boolean): string =>
-  flag ? 'Hide Image' : 'Show Image';
+  flag ? 'Hide Photo' : 'Show Photo';
 
-const Frame: FunctionComponent<FrameProps> = ({ tree }) => {
-  const [imageIsVisible, setImageIsVisible] = useState(false);
+const Frame: FunctionComponent<FrameProps> = ({ tree, showAllPhotos }) => {
+  const [imageIsVisible, setImageIsVisible] = useState(showAllPhotos);
+
+  useEffect(() => {
+    setImageIsVisible(showAllPhotos);
+  }, [showAllPhotos])
   return (
     <li className="Frame">
       <h1>{tree.name}</h1>
@@ -33,6 +38,10 @@ const Frame: FunctionComponent<FrameProps> = ({ tree }) => {
       />
     </li>
   );
+};
+
+Frame.defaultProps = {
+  showAllPhotos: false
 };
 
 export default Frame;
