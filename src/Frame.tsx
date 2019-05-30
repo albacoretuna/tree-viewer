@@ -20,17 +20,17 @@ const Frame: FunctionComponent<FrameProps> = ({ tree }) => {
     <li className="Frame">
       <h1>{tree.name}</h1>
       <h2>{tree.species_name}</h2>
-      <img
-        src={tree.image}
-        alt={tree.name}
-        className={imageIsVisible ? 'Image Image--is-visible' : 'Image'}
-      />
       <button
         className="Button"
         onClick={() => setImageIsVisible(!imageIsVisible)}
       >
         {getButtonText(imageIsVisible)}
       </button>
+      <img
+        src={tree.image}
+        alt={tree.name}
+        className={imageIsVisible ? 'Image Image--is-visible' : 'Image'}
+      />
     </li>
   );
 };
