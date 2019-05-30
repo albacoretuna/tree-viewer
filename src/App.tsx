@@ -1,9 +1,17 @@
+/**
+ * App.tsx
+ * This is the main file holding most of the logic
+ * so start here and check out individual components that this one imports
+ */
+
 // libs
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import axios from 'axios';
 
 // ours
-import Frame from './Frame';
+import Search from './Search';
+import Gallery from './Gallery';
+import ShowAllPhotos from './ShowAllPhotos';
 import './App.css';
 
 // a single tree info in the api response
@@ -20,8 +28,13 @@ const App: FunctionComponent = () => {
     error: any;
   }
   const initialData = { trees: [], loading: true, error: null };
+  // main hook that keeps tree data from api
   const [data, setData] = useState<IDataState>(initialData);
+
+  // hook for the search
   const [searchText, setSearchText] = useState('');
+
+  // hook for toggling all photos
   const [showAllPhotos, setShowAllPhotos] = useState(false);
 
   // read tree data from api and put it into state
@@ -43,24 +56,14 @@ const App: FunctionComponent = () => {
     fetchDataAndSetState();
   }, []);
 
-  const getShowAllPhotosText = (showAllPhotos: boolean): string =>
-    showAllPhotos ? 'Hide All photos' : 'Show all photos';
-
   return (
     <div className="App">
-      <header className="Header">
-        <label htmlFor="search">Fitler by tree name: </label>
-        <input
-          id="search"
-          type="search"
-          placeholder="for example: Baobab"
-          className="SearchInput"
-          onChange={event => setSearchText(event.target.value.toLowerCase())}
-        />
-        <button className="Button" onClick={() => setShowAllPhotos(!showAllPhotos)}>
-          {getShowAllPhotosText(showAllPhotos)}
-        </button>
-      </header>
+      <Search setSearchText={setSearchText} />
+      <ShowAllPhotos
+        setShowAllPhotos={setShowAllPhotos}
+        showAllPhotos={showAllPhotos}
+      />
+
       {/* loading indicator */}
       {data.loading && <p>Loading...</p>}
 
@@ -71,20 +74,14 @@ const App: FunctionComponent = () => {
           {console.error(data.error)}
         </p>
       )}
-      <ul className="Gallery">
-        {data.trees
-          .filter(
-            (tree: Tree) =>
-              tree.name && tree.name.toLowerCase().includes(searchText)
-          )
-          .map((tree, index) => (
-            <Frame
-              tree={tree}
-              key={index /*TODO in production get unique ids from backend*/}
-              showAllPhotos={showAllPhotos}
-            />
-          ))}
-      </ul>
+
+      {/* main component */}
+      <Gallery
+        trees={data.trees}
+        searchText={searchText}
+        showAllPhotos={showAllPhotos}
+      />
+
       <footer className="Footer">We Need Trees</footer>
     </div>
   );

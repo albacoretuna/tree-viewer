@@ -5,7 +5,7 @@
 describe('Testing Tremendous App', function() {
   it('Clicking on show button opens image', function() {
     cy.visit('/');
-    cy.contains('Show Image').click();
+    cy.contains('Show Photo').click();
     cy.get('.Gallery li img').should('have.class', 'Image--is-visible');
   })
 
