@@ -5,18 +5,23 @@
 
 .Header {
   text-align: center;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
-  border-radius: 5px;
+  border-radius: 4px;
+  padding: 30px;
+  background: rgba(254,254,254,0.7);
 }
 
 .SearchInput {
   border: 2px solid green;
-  padding: 20px;
+  padding: 20px 5px;
   min-width: 320px;
   margin-top: 10px;
   height: 1.5em;
   font-size: 1.1em;
+  border: none;
+  border-bottom: 2px solid green;
+  background: rgba(254,254,254,0.7);
 }
 
 .Gallery {
@@ -27,8 +32,7 @@
   justify-content: center;
 }
 
-
-@media only screen and (min-device-width : 667px) {
+@media only screen and (min-device-width: 667px) {
   .Gallery {
     grid-template-columns: 1fr 1fr;
     grid-gap: 2%;
@@ -38,13 +42,13 @@
 .Frame {
   text-align: center;
   list-style: none;
-  border-radius: 0;
+  border-radius: 4px;
   border: 2px solid black;
   padding: 20px;
-  background-color: #fff;
   height: fit-content;
+  background: rgba(0, 188, 212, 0.72);
+  color: #594b4b;
 }
-
 
 .Image {
   display: block;
@@ -71,7 +75,7 @@
 .Footer {
   text-align: center;
   max-width: 400px;
-  margin: 100px auto 30px ;
+  margin: 100px auto 30px;
   border-radius: 5px;
   padding: 10px;
   font-weight: 700;
