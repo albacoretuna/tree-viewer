@@ -7,12 +7,12 @@
 // libs
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 // ours
 import Search from './Search';
 import Gallery from './Gallery';
 import ShowAllPhotos from './ShowAllPhotos';
-import './App.css';
 
 // a single tree info in the api response
 export type Tree = {
@@ -20,6 +20,17 @@ export type Tree = {
   name: string;
   species_name: string;
 };
+
+
+const Footer=styled.footer`
+  min-height: 200px;
+  margin: 100px auto 30px;
+  padding: 10px;
+`;
+const AppWrapper = styled.div`
+  height: 100%;
+  font-family: 'Helvetica', 'Arial', 'sans-serif';
+`;
 
 const App: FunctionComponent = () => {
   interface IDataState {
@@ -57,7 +68,7 @@ const App: FunctionComponent = () => {
   }, []);
 
   return (
-    <div className="App">
+    <AppWrapper>
       <Search setSearchText={setSearchText} />
       <ShowAllPhotos
         setShowAllPhotos={setShowAllPhotos}
@@ -82,8 +93,8 @@ const App: FunctionComponent = () => {
         showAllPhotos={showAllPhotos}
       />
 
-      <footer className="Footer">We Need Trees</footer>
-    </div>
+    <Footer />
+    </AppWrapper>
   );
 };
 

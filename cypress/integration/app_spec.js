@@ -6,14 +6,18 @@ describe('Testing Tremendous App', function() {
   it('Clicking on show button opens image', function() {
     cy.visit('/');
     cy.contains('Show Photo').click();
-    cy.get('.Gallery li img').should('have.class', 'Image--is-visible');
+    cy.get('li img').should('have.css', 'max-height', '500px');
   })
 
   it('Searching for a none-existent tree returns no tree', function() {
     cy.visit('/')
-    cy.get('input#search').type('Blah blah tree');
-    cy.get('ul.Gallery').find('li').should($li => {
-      expect($li).to.have.length(0);
-    })
+    cy.get('input#search').type('Blah');
+    cy.get('ul').find('li').should('not.exist');
+  })
+
+  it('Searching for Baobab returns Baobab', function() {
+    cy.visit('/')
+    cy.get('input#search').type('Baobab');
+    cy.get('ul').find('li').should('contain','Baobab');
   })
   })

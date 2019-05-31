@@ -39,6 +39,7 @@ With every push to master, CI will automatically run tests and deploy the app to
 ## Features
 
   * fetch JSON data
+  * TypeScript
   * List the trees
   * On click open the photos of the tree
   * Filter trees by name
@@ -48,5 +49,4 @@ With every push to master, CI will automatically run tests and deploy the app to
 
   * What if the API return tones of photos? Some infinite scrolling or pagination
   * API schema validation
-  * StyledComponents for CSS
   * Error reporting, so that we know what goes wrong before users need to tell us

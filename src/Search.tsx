@@ -1,13 +1,29 @@
 // libs
 import React, { FunctionComponent, Fragment } from 'react';
+import styled from 'styled-components';
+
+const Input = styled.input`
+  display: block;
+  border: 2px solid green;
+  padding: 20px 5px;
+  min-width: 320px;
+  margin-top: 10px;
+  margin-right: 30px;
+  height: 1.5em;
+  font-size: 1.1em;
+  border: none;
+  border-bottom: 2px solid green;
+  background: rgba(254,254,254,0.7);
+`;
+
+const Label = styled.label``;
 
 const Search: FunctionComponent<any> = ({setSearchText}) => <Fragment>
-         <label htmlFor="search" className="SearchLabel">Fitler by tree name </label>
-        <input
+       <Label htmlFor="search">Fitler by tree name </Label>
+        <Input
           id="search"
           type="search"
           placeholder="for example: Baobab"
-          className="SearchInput"
           onChange={event => setSearchText(event.target.value.toLowerCase())}
         />
 </Fragment>
