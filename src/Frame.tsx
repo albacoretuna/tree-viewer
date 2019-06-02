@@ -5,8 +5,7 @@ import React, { useState, useEffect, FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 // ours
-import { Tree } from './App'
-
+import { Tree } from './App';
 
 type FrameProps = {
   tree: Tree;
@@ -21,7 +20,7 @@ const Button = styled.button`
   margin: 30px 10px 10px 10px;
   min-width: 200px;
 `;
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 const ListItem = styled.li`
   text-align: center;
@@ -34,8 +33,8 @@ const ListItem = styled.li`
 `;
 
 type TreePhotoProps = {
-  imageIsVisible: boolean
-}
+  imageIsVisible: boolean;
+};
 
 const TreePhoto = styled.img<TreePhotoProps>`
   display: block;
@@ -45,7 +44,12 @@ const TreePhoto = styled.img<TreePhotoProps>`
   transition: max-height 0.25s ease-out;
   overflow: hidden;
   transition: max-height 0.25s ease-in;
-  max-height: ${({imageIsVisible}) => imageIsVisible ? '500px' : ''};
+  max-height: ${({ imageIsVisible }) => (imageIsVisible ? '500px' : '')};
+`;
+
+const LookUp = styled.p`
+  color: grey;
+  font-size: 12px;
 `;
 
 const getButtonText = (flag: boolean): string =>
@@ -54,16 +58,22 @@ const getButtonText = (flag: boolean): string =>
 const Frame: FunctionComponent<FrameProps> = ({ tree, showAllPhotos }) => {
   const [imageIsVisible, setImageIsVisible] = useState(showAllPhotos);
 
-  useEffect(() => {
-    setImageIsVisible(showAllPhotos);
-  }, [showAllPhotos])
+  useEffect(
+    () => {
+      setImageIsVisible(showAllPhotos);
+    },
+    [showAllPhotos]
+  );
   return (
     <ListItem>
       <h1>{tree.name}</h1>
       <h2>{tree.species_name}</h2>
-      <Button
-        onClick={() => setImageIsVisible(!imageIsVisible)}
-      >
+      <LookUp>
+        <a href={'https://www.ecosia.org/search?q=' + tree.name}>
+          Look {tree.name} up
+        </a>
+      </LookUp>
+      <Button onClick={() => setImageIsVisible(!imageIsVisible)}>
         {getButtonText(imageIsVisible)}
       </Button>
       <TreePhoto
