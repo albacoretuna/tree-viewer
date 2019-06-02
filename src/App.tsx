@@ -26,6 +26,9 @@ const Footer=styled.footer`
   min-height: 200px;
   margin: 100px auto 30px;
   padding: 10px;
+  display: flex;
+  align-items: flex-end;
+  color: gray;
 `;
 const AppWrapper = styled.div`
   height: 100%;
@@ -48,14 +51,22 @@ const App: FunctionComponent = () => {
   // hook for toggling all photos
   const [showAllPhotos, setShowAllPhotos] = useState(false);
 
+  // hook for keeping latency duration
+  const [latency, setLatency] = useState(0);
+
   // read tree data from api and put it into state
   const fetchDataAndSetState = () => {
     const treeDataUrl =
       'https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json';
-
+    const startTimestamp = Date.now();
     axios
       .get(treeDataUrl)
       .then(({ data }) => {
+        console.log(Date.now() - startTimestamp);
+        // track how long the api call took
+        setLatency(Date.now() - startTimestamp);
+
+        // put response in state
         setData({ ...data, error: null, loading: false });
       })
       .catch(error => {
@@ -93,7 +104,7 @@ const App: FunctionComponent = () => {
         showAllPhotos={showAllPhotos}
       />
 
-    <Footer />
+    <Footer >Found {data.trees.length} trees in {latency} milliseconds</Footer>
     </AppWrapper>
   );
 };
