@@ -15,7 +15,7 @@ type FrameProps = {
 
 const Button = styled.button`
   background: rgba(0, 214, 255, 0.2);
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 10px;
   margin: 10px;
   min-width: 200px;
@@ -25,11 +25,11 @@ Button.displayName = 'Button';
 const ListItem = styled.li`
   text-align: center;
   list-style: none;
-  border-radius: 4px;
-  border: 2px solid black;
+  border: none;
   padding: 20px;
   height: fit-content;
   color: #594b4b;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 `;
 
 type TreePhotoProps = {

@@ -10,9 +10,10 @@ type TreeDescriptionProps = {
 };
 
 const Description = styled.p`
-  color: #636679;
+  color: rgba(0,0,0,.54);
   width: 80%;
   margin: 10px auto;
+  text-align: left;
 `;
 
 const TreeDescription: FunctionComponent<TreeDescriptionProps> = ({
