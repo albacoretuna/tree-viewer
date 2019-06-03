@@ -69,11 +69,6 @@ const Frame: FunctionComponent<FrameProps> = ({ tree, showAllPhotos }) => {
     <ListItem>
       <h1>{tree.name}</h1>
       <h2>{tree.species_name}</h2>
-      <LookUp>
-        <a href={'https://www.ecosia.org/search?q=' + tree.name}>
-          Look {tree.name} up
-        </a>
-      </LookUp>
       <Button onClick={() => setImageIsVisible(!imageIsVisible)}>
         {getButtonText(imageIsVisible)}
       </Button>
@@ -83,6 +78,11 @@ const Frame: FunctionComponent<FrameProps> = ({ tree, showAllPhotos }) => {
         imageIsVisible={imageIsVisible}
       />
       <TreeDescription speciesName = {tree.species_name} />
+      <LookUp>
+        <a href={'https://www.ecosia.org/search?q=' + tree.name}>
+          Look {tree.name} up
+        </a>
+      </LookUp>
     </ListItem>
   );
 };
