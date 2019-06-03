@@ -42,7 +42,7 @@ const App: FunctionComponent = () => {
     error: any;
   }
   const initialData = { trees: [], loading: true, error: null };
-  // main hook that keeps tree data from api
+  // main hook that keeps tree data coming from the api
   const [data, setData] = useState<IDataState>(initialData);
 
   // hook for the search

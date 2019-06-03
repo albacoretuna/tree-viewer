@@ -18,7 +18,6 @@ const Button = styled.button`
   border: 2px solid black;
   padding: 10px;
   margin: 10px;
-  margin: 30px 10px 10px 10px;
   min-width: 200px;
 `;
 Button.displayName = 'Button';
