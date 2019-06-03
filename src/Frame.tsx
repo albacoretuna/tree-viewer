@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 // ours
 import { Tree } from './App';
+import TreeDescription from './TreeDescription';
 
 type FrameProps = {
   tree: Tree;
@@ -81,6 +82,7 @@ const Frame: FunctionComponent<FrameProps> = ({ tree, showAllPhotos }) => {
         alt={tree.name}
         imageIsVisible={imageIsVisible}
       />
+      <TreeDescription speciesName = {tree.species_name} />
     </ListItem>
   );
 };
