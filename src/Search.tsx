@@ -18,7 +18,16 @@ const Input = styled.input`
 
 const Label = styled.label``;
 
-const Search: FunctionComponent<any> = ({setSearchText}) => <Fragment>
+
+// typings for hooks
+type Dispatch<A> = (value: A) => void;
+type SetStateAction<S> = S | ((prevState: S) => S);
+
+type SearchProps = {
+  setSearchText: Dispatch<SetStateAction<string>>
+}
+
+const Search: FunctionComponent<SearchProps> = ({setSearchText}) => <Fragment>
        <Label htmlFor="search">Fitler by tree name </Label>
         <Input
           id="search"

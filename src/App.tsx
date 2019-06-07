@@ -34,6 +34,10 @@ const Footer=styled.footer`
   color: rgb(103, 100, 100);
 `;
 
+const Latency = styled.p`
+  padding: 10px;
+  color: rgb(103, 100, 100);
+`;
 const AppWrapper = styled.div`
   height: 100%;
   font-family: 'Helvetica', 'Arial', 'sans-serif';
@@ -53,7 +57,7 @@ const App: FunctionComponent = () => {
   const [searchText, setSearchText] = useState('');
 
   // hook for toggling all photos
-  const [showAllPhotos, setShowAllPhotos] = useState(false);
+  const [showAllPhotos, setShowAllPhotos] = useState<boolean>(false);
 
   // hook for keeping latency duration
   const [latency, setLatency] = useState(0);
@@ -97,6 +101,9 @@ const App: FunctionComponent = () => {
         sortBy = {sortBy}
         setSortBy = {setSortBy}
       />
+      <Latency>
+        Found {data.trees.length} trees in {latency} milliseconds
+      </Latency>
 
       {/* loading indicator */}
       {data.loading && <p>Loading...</p>}
@@ -117,7 +124,7 @@ const App: FunctionComponent = () => {
         sortBy={sortBy}
       />
 
-    <Footer >Found {data.trees.length} trees in {latency} milliseconds</Footer>
+    <Footer />
     </AppWrapper>
   );
 };

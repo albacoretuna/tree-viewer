@@ -14,9 +14,18 @@ const Button = styled.button`
   min-width: 200px;
 `;
 
+// typings for hooks
+type Dispatch<A> = (value: A) => void;
+type SetStateAction<S> = S | ((prevState: S) => S);
+
+type ShowAllPhotosButtonProps = {
+  showAllPhotos: boolean;
+  setShowAllPhotos: Dispatch<SetStateAction<boolean>>
+}
+
 // A button to open/collapse all photos
-const ShowAllPhotos: FunctionComponent<any> = ({showAllPhotos, setShowAllPhotos}) =>
+const ShowAllPhotosButton: FunctionComponent<ShowAllPhotosButtonProps> = ({showAllPhotos, setShowAllPhotos}) =>
         <Button onClick={() => setShowAllPhotos(!showAllPhotos)}>
           {getButtonText(showAllPhotos)}
         </Button>
-export default ShowAllPhotos;
+export default ShowAllPhotosButton;

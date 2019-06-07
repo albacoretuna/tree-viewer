@@ -10,7 +10,7 @@ type TreeDescriptionProps = {
 };
 
 const Description = styled.p`
-  color: rgba(0,0,0,.54);
+  color: rgba(0, 0, 0, 0.54);
   width: 80%;
   margin: 10px auto;
   text-align: left;
@@ -22,11 +22,10 @@ const TreeDescription: FunctionComponent<TreeDescriptionProps> = ({
   const [description, setDescription] = useState('');
 
   const getWikipediaDescription = (speciesName: string) => {
+    const wikipediaSearchEndpoint =
+      'https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=';
     axios
-      .get(
-        'https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=' +
-          speciesName
-      )
+      .get(wikipediaSearchEndpoint + speciesName)
       .then(({ data }) => {
         // description is found in [2][0] in current wikipedia search api spec
         const description = (data[2] && data[2][0]) || '';

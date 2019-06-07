@@ -17,8 +17,18 @@ const Button = styled.button`
   min-width: 200px;
 `;
 
+
+// typings for hooks
+type Dispatch<A> = (value: A) => void;
+type SetStateAction<S> = S | ((prevState: S) => S);
+
+type SortByButtonProps = {
+  sortBy: SortBy;
+  setSortBy: Dispatch<SetStateAction<SortBy>>
+}
+
 // A button to sort trees by name
-const SortByButton: FunctionComponent<any> = ({sortBy, setSortBy}) =>
+const SortByButton: FunctionComponent<SortByButtonProps> = ({sortBy, setSortBy}) =>
   <Button onClick={() => setSortBy(sortBy === 'AZ' ? 'ZA' : 'AZ')}>
           {getButtonText(sortBy)}
         </Button>
