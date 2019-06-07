@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { SortBy } from './App';
 
 const getButtonText = (sortBy: SortBy): string =>
-  sortBy === 'AZ' ? 'Sort A to Z' : 'Sort Z to A';
+  sortBy === 'ZA' ? 'Sort A to Z' : 'Sort Z to A';
 
 const Button = styled.button`
   background: rgba(167, 207, 215, 0.2);

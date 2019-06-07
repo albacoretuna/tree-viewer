@@ -31,7 +31,7 @@ const Footer=styled.footer`
   padding: 10px;
   display: flex;
   align-items: flex-end;
-  color: gray;
+  color: rgb(103, 100, 100);
 `;
 
 const AppWrapper = styled.div`
