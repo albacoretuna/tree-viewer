@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 // ours
-import { Tree } from './App'
+import { Tree } from './App';
 import Frame from './Frame';
 
 const GalleryWrapper = styled.ul`
@@ -19,20 +19,39 @@ const GalleryWrapper = styled.ul`
   }
 `;
 
-const Gallery: FunctionComponent<any> = ({trees, showAllPhotos, searchText}) =>
-      <GalleryWrapper>
-        {trees
-          .filter(
-            (tree: Tree) =>
-              tree.name && tree.name.toLowerCase().includes(searchText)
-          )
-          .map((tree: Tree, index: number) => (
-            <Frame
-              tree={tree}
-              key={index /*TODO in production get unique ids from backend*/}
-              showAllPhotos={showAllPhotos}
-            />
-          ))}
-      </GalleryWrapper>
+type GalleryProps = {
+  trees: Tree[];
+  showAllPhotos: boolean;
+  searchText: string;
+  sortBy: string;
+};
+
+const Gallery: FunctionComponent<GalleryProps> = ({
+  trees,
+  showAllPhotos,
+  searchText,
+  sortBy
+}) => (
+  <GalleryWrapper>
+    {trees
+      .filter(
+        (tree: Tree) =>
+          tree.name && tree.name.toLowerCase().includes(searchText)
+      )
+      .sort(
+        (treeA: Tree, treeB: Tree) =>
+          sortBy === 'AZ'
+            ? treeA.name.localeCompare(treeB.name)
+            : treeB.name.localeCompare(treeA.name)
+      )
+      .map((tree: Tree, index: number) => (
+        <Frame
+          tree={tree}
+          key={index /*TODO in production get unique ids from backend*/}
+          showAllPhotos={showAllPhotos}
+        />
+      ))}
+  </GalleryWrapper>
+);
 
 export default Gallery;

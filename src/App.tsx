@@ -12,7 +12,8 @@ import styled from 'styled-components';
 // ours
 import Search from './Search';
 import Gallery from './Gallery';
-import ShowAllPhotos from './ShowAllPhotos';
+import ShowAllPhotosButton from './ShowAllPhotosButton';
+import SortByButton from './SortByButton';
 
 // a single tree info in the api response
 export type Tree = {
@@ -21,6 +22,8 @@ export type Tree = {
   species_name: string;
 };
 
+// sorting order
+export type SortBy = "AZ" | "ZA";
 
 const Footer=styled.footer`
   min-height: 200px;
@@ -55,6 +58,9 @@ const App: FunctionComponent = () => {
   // hook for keeping latency duration
   const [latency, setLatency] = useState(0);
 
+  // hook for sorting
+  const [sortBy, setSortBy] = useState<SortBy>('AZ');
+
   // read tree data from api and put it into state
   const fetchDataAndSetState = () => {
     const treeDataUrl =
@@ -81,10 +87,15 @@ const App: FunctionComponent = () => {
 
   return (
     <AppWrapper>
+      {/* search and controls */}
       <Search setSearchText={setSearchText} />
-      <ShowAllPhotos
+      <ShowAllPhotosButton
         setShowAllPhotos={setShowAllPhotos}
         showAllPhotos={showAllPhotos}
+      />
+      <SortByButton
+        sortBy = {sortBy}
+        setSortBy = {setSortBy}
       />
 
       {/* loading indicator */}
@@ -103,6 +114,7 @@ const App: FunctionComponent = () => {
         trees={data.trees}
         searchText={searchText}
         showAllPhotos={showAllPhotos}
+        sortBy={sortBy}
       />
 
     <Footer >Found {data.trees.length} trees in {latency} milliseconds</Footer>
