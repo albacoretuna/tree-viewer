@@ -30,6 +30,7 @@ const Footer=styled.footer`
   align-items: flex-end;
   color: gray;
 `;
+
 const AppWrapper = styled.div`
   height: 100%;
   font-family: 'Helvetica', 'Arial', 'sans-serif';
@@ -62,7 +63,7 @@ const App: FunctionComponent = () => {
     axios
       .get(treeDataUrl)
       .then(({ data }) => {
-        console.log(Date.now() - startTimestamp);
+
         // track how long the api call took
         setLatency(Date.now() - startTimestamp);
 
